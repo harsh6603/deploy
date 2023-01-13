@@ -24,6 +24,13 @@ app.use("/api/user",require("./modules/routes/routeUser"))
 app.use("/api/event",require("./modules/routes/routeEvent"))
 app.use("/api/solution",require("./modules/routes/routeSolution"))
 
+//set static folder
+app.use(express.static("dist"));
+
+app.get("*", (req,res) => {
+    res.sendFile(path.resolve(__dirname,"dist","index.html"));
+})
+
 app.listen(port,() => {
     console.log("Server connected at "+port);
 })
