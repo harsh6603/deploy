@@ -210,7 +210,7 @@ exports.findImage = (req,res) => {
     let imageURL=req.params.imageUrl;
     if(imageURL!=undefined)
     {
-        const temp=fs.readFileSync(`./deploy/modules/uploads/${imageURL}`)        
+        const temp=fs.readFileSync(`./modules/uploads/${imageURL}`)        
         // res.setHeader("Content-Type","image/jpeg")
         res.send(temp);
     }
