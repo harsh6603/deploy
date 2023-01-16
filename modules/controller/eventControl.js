@@ -70,8 +70,10 @@ exports.createEvent = async(req,res) => {
         })
     }    
 
-    console.log(req.file.filename);
-    req.body.image=req.file.filename;
+    if(req.files.files!=undefined)
+        req.body.image=req.files.files[0].filename
+    if(req.files.files1!=undefined)
+        req.body.result=req.files.files1[0].filename
 
     try{
         //finding loged in user details
@@ -126,10 +128,12 @@ exports.readEvent = async(req,res) => {
 exports.updateEvent = async(req,res) => {
 
     req.body=JSON.parse(JSON.stringify(req.body))
-    // console.log(req.file.filename);
-    // console.log(req.file);
-    if(req.file!=undefined)
-        req.body.image=req.file.filename
+
+    if(req.files.files!=undefined)
+        req.body.image=req.files.files[0].filename
+    if(req.files.files1!=undefined)
+        req.body.result=req.files.files1[0].filename
+    console.log(req.body);
     try{
         const check=await userModel.User.findById(req.userID);
         if(check.type=="super")
@@ -210,9 +214,23 @@ exports.findImage = (req,res) => {
     let imageURL=req.params.imageUrl;
     if(imageURL!=undefined)
     {
-        const temp=fs.readFileSync(`./modules/uploads/${imageURL}`)        
+        const temp=fs.readFileSync(`./modules/uploads/events/${imageURL}`)        
         // res.setHeader("Content-Type","image/jpeg")
         res.send(temp);
     }
     // res.json("Hello");
+}
+
+exports.getImage = async(req,res) => {
+    let contestID=req.params.contestID;
+
+    const findResult=await eventModel.Event.findById(contestID);
+
+    // console.log(findResult.result);
+
+    if(findResult.result!=undefined)
+    {
+        const temp=fs.readFileSync(`./modules/uploads/result/${findResult.result}`)
+        res.send(temp);        
+    }
 }
