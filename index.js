@@ -15,11 +15,6 @@ app.use(cors({
 //database connection
 require("./db");
 
-
-app.get("/",(req,res) => {
-    res.send("Hello world");
-})
-
 app.use("/api/user",require("./modules/routes/routeUser"))
 app.use("/api/event",require("./modules/routes/routeEvent"))
 app.use("/api/solution",require("./modules/routes/routeSolution"))
