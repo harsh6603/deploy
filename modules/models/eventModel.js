@@ -29,6 +29,9 @@ const eventSchema = new mongoose.Schema({
         type:String,
         required:true
     },
+    result:{
+        typr:String
+    },
     deleted:{
         type:Boolean,
         required:true,
