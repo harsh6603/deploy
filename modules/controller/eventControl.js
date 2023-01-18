@@ -20,7 +20,7 @@ exports.createEvent = async(req,res) => {
 
     let data = req.body;
 
-    if(req.file==undefined)
+    if(req.files.files==undefined)
     {
         return res.status(400).json({
             success:false,
