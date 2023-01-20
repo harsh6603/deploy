@@ -124,6 +124,25 @@ exports.readEvent = async(req,res) => {
     }
 }
 
+//function for reading single event
+exports.readSingleEvent = async(req,res) => {
+    try{
+        const result = await eventModel.Event.findById(req.params.contestID);
+        res.json({
+            success:true,
+            message:result
+        })
+    }
+    catch(err)
+    {
+        console.log(err);
+        res.status(500).json({
+            success:false,
+            errors:"Some error occure"
+        })
+    }
+}
+
 //function for update event details
 exports.updateEvent = async(req,res) => {
 

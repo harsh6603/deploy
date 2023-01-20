@@ -36,6 +36,9 @@ router.post("/createEvent",authentication.authenticateUser,upload.fields([{name:
 //read event
 router.get("/readEvent",eventControl.readEvent);
 
+//read single event
+router.get("/readSingleEvent/:contestID",eventControl.readSingleEvent);
+
 //get image
 router.get("/image/:imageUrl",eventControl.findImage);
 
