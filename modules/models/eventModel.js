@@ -30,7 +30,8 @@ const eventSchema = new mongoose.Schema({
         required:true
     },
     result:{
-        typr:String
+        typr:String,
+        default:""
     },
     deleted:{
         type:Boolean,

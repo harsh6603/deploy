@@ -17,7 +17,7 @@ exports.createEvent = async(req,res) => {
 
     req.body=JSON.parse(JSON.stringify(req.body))
     // console.log(req.body)
-
+    
     let data = req.body;
 
     if(req.files.files==undefined)
@@ -241,15 +241,13 @@ exports.findImage = (req,res) => {
 }
 
 exports.getImage = async(req,res) => {
-    let contestID=req.params.contestID;
 
-    const findResult=await eventModel.Event.findById(contestID);
-
-    // console.log(findResult.result);
-
-    if(findResult.result!=undefined)
+    // console.log(req.params.resultUrl)    
+    let resultUrl=req.params.resultUrl;
+    if(resultUrl!=undefined)
     {
-        const temp=fs.readFileSync(`./modules/uploads/result/${findResult.result}`)
-        res.send(temp);        
-    }
+        const temp=fs.readFileSync(`./modules/uploads/result/${resultUrl}`)        
+        // res.setHeader("Content-Type","image/jpeg")
+        res.send(temp);
+    }        
 }

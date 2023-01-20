@@ -9,10 +9,10 @@ const storage=multer.diskStorage({
 
     destination:(req,file,cb) => {
         if (file.fieldname === "files") {
-            cb(null,"./modules/uploads/events")
+            cb(null,"./backend/modules/uploads/events")
         }
         else if (file.fieldname === "files1") {
-            cb(null,"./modules/uploads/result")
+            cb(null,"./backend/modules/uploads/result")
         }
         // cb(null,"./backend/modules/uploads")
     },    
@@ -43,7 +43,7 @@ router.get("/readSingleEvent/:contestID",eventControl.readSingleEvent);
 router.get("/image/:imageUrl",eventControl.findImage);
 
 //get image
-router.get("/imageInQuestions/:contestID",eventControl.getImage);
+router.get("/imageInQuestions/:resultUrl",eventControl.getImage);
 
 //update event
 router.patch("/updateEvent/:id",authentication.authenticateUser,upload.fields([{name:"files",maxCount:1},{name:"files1",maxCount:1}]),eventControl.updateEvent);
