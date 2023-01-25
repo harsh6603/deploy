@@ -9,10 +9,10 @@ const storage=multer.diskStorage({
 
     destination:(req,file,cb) => {
         if (file.fieldname === "files") {
-            cb(null,"./backend/modules/uploads/events")
+            cb(null,"./modules/uploads/events")
         }
         else if (file.fieldname === "files1") {
-            cb(null,"./backend/modules/uploads/result")
+            cb(null,"./modules/uploads/result")
         }
         // cb(null,"./backend/modules/uploads")
     },    
